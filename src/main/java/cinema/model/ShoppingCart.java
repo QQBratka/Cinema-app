@@ -2,7 +2,6 @@ package cinema.model;
 
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -17,12 +16,12 @@ public class ShoppingCart {
     @Id
     private Long id;
     @OneToMany
-    @JoinTable(name = "shopping_carts_tickets",
-            joinColumns = @JoinColumn(name = "shopping_cart_id"),
+    @JoinTable(name = "shopping_karts_tickets",
+            joinColumns = @JoinColumn(name = "shopping_kart_id"),
             inverseJoinColumns = @JoinColumn(name = "ticket_id"))
     private List<Ticket> tickets;
-    @OneToOne(fetch = FetchType.LAZY)
     @MapsId
+    @OneToOne
     @JoinColumn(name = "id")
     private User user;
 
@@ -52,7 +51,9 @@ public class ShoppingCart {
 
     @Override
     public String toString() {
-        return "ShoppingCart{" + "id=" + id + ", tickets="
-                + tickets + ", user=" + user + '}';
+        return "ShoppingCart{"
+                + "id=" + id
+                + ", tickets=" + tickets
+                + ", user=" + user + '}';
     }
 }
