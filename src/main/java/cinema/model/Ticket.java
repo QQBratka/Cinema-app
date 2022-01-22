@@ -18,6 +18,7 @@ public class Ticket {
     @JoinColumn(name = "movie_session_id")
     private MovieSession movieSession;
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Long getId() {
